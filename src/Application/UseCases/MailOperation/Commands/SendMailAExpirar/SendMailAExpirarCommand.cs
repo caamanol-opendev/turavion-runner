@@ -26,8 +26,8 @@ public class SendMailAExpirarCommandHandler(
         {
             foreach (var solicitudPagoEntity in solicitudPagoEntities)
             {
-                //var mainLink = configuration.GetValue<string>("TransferPagin:Url") + ConvertTo.Base64(solicitudPagoEntity.IdSolicitudPago);
-                //await sendMail.SendMsgAExpirar(solicitudPagoEntity, mainLink);
+                var mainLink = configuration.GetValue<string>("TransferPagin:Url") + ConvertTo.Base64(solicitudPagoEntity.IdSolicitudPago);
+                await sendMail.SendMsgAExpirar(solicitudPagoEntity, mainLink);
             }
 
             return new Response<SendMailAExpirarResponse>
