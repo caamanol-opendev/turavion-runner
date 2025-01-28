@@ -29,8 +29,7 @@ public class SendMailExpiradoCommandHandler(
                 //var solicitudPago = await solicitudPagoQuery.FirstOrDefaultIncludeAsync(nameof(SolicitudPagoEntity.Email), x => x.IdSolicitudPago == solicitudPagoEntity.IdSolicitudPago, true);
                 //solicitudPago.Estado = "expirado";
                 //await solicitudPagoCommand.UpdateAsync(solicitudPago);
-                if (solicitudPagoEntity.IdSolicitudPago == 8)
-                    await sendMail.SendMsgExpirado(solicitudPagoEntity);
+                //await sendMail.SendMsgExpirado(solicitudPagoEntity);
             }
 
             return new Response<SendMailExpiradoResponse>

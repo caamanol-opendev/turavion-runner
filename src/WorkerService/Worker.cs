@@ -20,8 +20,8 @@ public class Worker : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        //string delayTimeString = _configuration["DataAccessRegistry:DilayTimeMilliseconds"];
-        //int delayTime = Convert.ToInt32(delayTimeString);
+        string delayTimeString = _configuration.GetValue<string>("Delay:TimeMinutes");
+        int delayTime = Convert.ToInt32(delayTimeString) * 60000;
 
         using (var scope = _scopeFactory.CreateScope())
         {
@@ -31,7 +31,7 @@ public class Worker : BackgroundService
                 var result = await scopedService.SendMailExpirado();
                 await Task.Delay(1000, stoppingToken);
                 await scopedService.SendMailAExpirar();
-                await Task.Delay(5000, stoppingToken);
+                await Task.Delay(delayTime, stoppingToken);
             }
 
         }
