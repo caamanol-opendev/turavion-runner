@@ -26,16 +26,12 @@ public class SendMailExpiradoCommandHandler(
         {
             foreach (var solicitudPagoEntity in solicitudPagoEntities)
             {
-                if (solicitudPagoEntity.IdSolicitudPago == 42)
-                {
-                    var solicitudPago = await solicitudPagoQuery.FirstOrDefaultIncludeAsync(nameof(SolicitudPagoEntity.Email), x => x.IdSolicitudPago == solicitudPagoEntity.IdSolicitudPago, true);
-                    solicitudPago.Estado = "expirado";
-                    await solicitudPagoCommand.UpdateAsync(solicitudPago);
-                    Console.WriteLine("..........Pago actualizado.............");
-                    await sendMail.SendMsgExpirado(solicitudPagoEntity);
-                    Console.WriteLine("..........Pago enviado.............");
-                }
-
+                var solicitudPago = await solicitudPagoQuery.FirstOrDefaultIncludeAsync(nameof(SolicitudPagoEntity.Email), x => x.IdSolicitudPago == solicitudPagoEntity.IdSolicitudPago, true);
+                solicitudPago.Estado = "expirado";
+                await solicitudPagoCommand.UpdateAsync(solicitudPago);
+                Console.WriteLine("..........Pago actualizado.............");
+                await sendMail.SendMsgExpirado(solicitudPagoEntity);
+                Console.WriteLine("..........Pago enviado.............");
             }
 
             return new Response<SendMailExpiradoResponse>

@@ -28,7 +28,7 @@ public class Worker : BackgroundService
             while (!stoppingToken.IsCancellationRequested)
             {
                 var scopedService = scope.ServiceProvider.GetRequiredService<IScopedService>();
-                var result = await scopedService.SendMailExpirado();
+                await scopedService.SendMailExpirado();
                 await Task.Delay(1000, stoppingToken);
                 await scopedService.SendMailAExpirar();
                 await Task.Delay(delayTime, stoppingToken);
