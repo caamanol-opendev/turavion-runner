@@ -66,7 +66,7 @@ namespace Infrastructure.Repositories
         public async Task<List<SolicitudPagoEntity>> GetListAExpirarAsync()
         {
             string delayTimeMinutes = _configuration.GetValue<string>("Delay:TimeMinutes");
-            var halfMinutes = Convert.ToInt32(delayTimeMinutes) / 2.0;
+            var halfMinutes = Convert.ToInt32(delayTimeMinutes);
 
             var query = await _context.SolicitudesPagos
                 .AsNoTracking()
