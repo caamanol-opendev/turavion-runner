@@ -28,6 +28,7 @@ public class SendMailAExpirarCommandHandler(
             {
                 var mainLink = configuration.GetValue<string>("TransferPagin:Url") + ConvertTo.Base64(solicitudPagoEntity.IdSolicitudPago);
                 await sendMail.SendMsgAExpirar(solicitudPagoEntity, mainLink);
+                Console.WriteLine("..........Pago enviado.............");
             }
 
             return new Response<SendMailAExpirarResponse>

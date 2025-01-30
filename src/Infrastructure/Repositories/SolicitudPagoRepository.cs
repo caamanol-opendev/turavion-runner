@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
         {
             var query = await _context.SolicitudesPagos
                 .AsNoTracking()
-                .Where(sp => sp.Estado == "enviado" || sp.Estado == "reenviado")
+                .Where(sp => sp.Estado == "enviado" || sp.Estado == "reenviado" || sp.Estado == "rechazado")
                 .Include(sp => sp.Email)
                 .OrderBy(sp => sp.IdSolicitudPago)
                 .ToListAsync();
