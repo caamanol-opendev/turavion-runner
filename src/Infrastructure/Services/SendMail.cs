@@ -92,7 +92,7 @@ namespace Infrastructure.Services
                         .Replace("[Services Description]", solicitudPagoEntity.Descripcion)
                         .Replace("[Money]", solicitudPagoEntity.Moneda)
                         .Replace("[Value]", solicitudPagoEntity.Valor.ToString())
-                        .Replace("[Expiration]", DateOnly.FromDateTime(solicitudPagoEntity.FechaExpiracion).ToString())
+                        .Replace("[Expiration]", DateOnly.FromDateTime(solicitudPagoEntity.FechaExpiracion).ToString("dd/MMM", System.Globalization.CultureInfo.GetCultureInfo("es-ES")))
                         .Replace("[Payment Link URL]", mainLink);
 
                 TUR_EnviarCorreoRequestBody requestBody = new();
